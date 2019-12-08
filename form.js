@@ -84,14 +84,12 @@ const isValidForm = () => {
  * Handle form submission event
  */
 const submit = () => {
-
     document.getElementById("errorAlert").hidden = true;
-    const form = document.forms.reservationsForm;
 
-    // Validate form
+    // Validate form and session capacity
     if (isValidForm() && isValidReservation()) {
         // Increase current reservations of selected session
-        selectedSession.currentReservations += +form.attendees.value;
+        selectedSession.currentReservations += +document.forms.reservationsForm.attendees.value;
         showSuccess();
         loadActivities();
     }
@@ -119,6 +117,7 @@ const loadSessions = (selected) => {
         sessions.options.length = 1;
 
         selectedActivity.sessions.forEach(session => {
+            // Only show sessions with available spaces
             if (session.maxCapacity > session.currentReservations) {
                 opt = document.createElement("option");
                 opt.value = session.id;
@@ -137,7 +136,7 @@ const loadActivities = () => {
     activities.options.length = 1;
 
     activityData.forEach(activity => {
-        // Validate that there is at least one session with available spaces
+        // Validate that the activity has at least one session with available spaces
         if (activity.sessions.find((s) => s.maxCapacity > s.currentReservations)) {
             opt = document.createElement("option");
             opt.value = activity.id;
