@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Reservations</title>
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="form.js"></script>
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <h1>Reservations</h1>
+        <p>Enter your details below to make a reservation</p>
+    </div>
+
+    <div class="container">
+        <form name="reservationsForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" name="name" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="activities">Activity</label>
+                <select class="form-control" id="activities">
+                    <option value="0">-- Select activity --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sessions">Session</label>
+                <select class="form-control" id="sessions">
+                    <option value="0">-- Select session --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="attendees">Number of Attendees</label>
+                <select class="form-control" id="attendees">
+                    <option value="0">-- Select number of attendees --</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <div id="errorAlert" class="alert alert-danger" role="alert"></div>
+        </form>
+
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" onclick="submit()">Submit</button>
+        </div>
+
+        <div id="successAlert" class="alert alert-success" role="alert"></div>
+
+    </div>
+</body>
+
+</html>
