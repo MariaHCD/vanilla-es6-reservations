@@ -90,6 +90,7 @@ const submit = () => {
     if (isValidForm() && isValidReservation()) {
         // Increase current reservations of selected session
         selectedSession.currentReservations += +document.forms.reservationsForm.attendees.value;
+        localStorage.setItem('activities', JSON.stringify(activityData));
         showSuccess();
         loadActivities();
     }
@@ -110,7 +111,7 @@ const selectSession = (selected) => {
  * @param {Event} selected 
  */
 const loadSessions = (selected) => {
-    selectedActivity = (activityData.find(activity => activity.id === +selected.target.value));
+    selectedActivity = activityData.find(activity => activity.id === +selected.target.value);
 
     if (selectedActivity) {
         let sessions = document.getElementById("sessions");
@@ -153,6 +154,12 @@ const init = () => {
     // Hide alert boxes
     document.getElementById("successAlert").hidden = true;
     document.getElementById("errorAlert").hidden = true;
+
+    if (!localStorage.getItem('activities')) {
+        localStorage.setItem('activities', JSON.stringify(activityData));
+    }
+
+    activityData = JSON.parse(localStorage.getItem('activities'));
 
     // Load activities drop down
     loadActivities();
